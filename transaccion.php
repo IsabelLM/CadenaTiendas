@@ -1,8 +1,6 @@
 <?php
 
-//include 'conexion.php';
-
-$pdo = new PDO("sqlsrv:Server=localhost;Database=CadenaTiendas", "", "");
+include './conexion.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
