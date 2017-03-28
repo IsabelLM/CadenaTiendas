@@ -1,22 +1,9 @@
 <?php
 
-//
-//$serverName = "C6PC15\SQLEXPRESS";
-//$conInfo = array("Database" => "CadenaTiendas");
-//
-//$conn = sqlsrv_connect($serverName, $conInfo);
-//
-//if ($conn) {
-//    echo "Conexión establecida.<br />";
-//} else {
-//    echo "Conexión no se pudo establecer.<br />";
-//    die(print_r(sqlsrv_errors(), true));
-//}
-//
 //Conexion con PDO
 
 $pdo = new PDO("sqlsrv:Server=localhost;Database=CadenaTiendas", "", "");
-
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
 //Para probar que funciona la conexion:
