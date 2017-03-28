@@ -15,7 +15,7 @@
 //
 //Conexion con PDO
 
-$c = new PDO("sqlsrv:Server=localhost;Database=CadenaTiendas", "", "");
+$pdo = new PDO("sqlsrv:Server=localhost;Database=CadenaTiendas", "", "");
 
 
 
