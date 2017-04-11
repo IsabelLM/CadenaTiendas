@@ -19,12 +19,11 @@ class UsuarioRepositorio {
             echo "<br>El usuario <b>" . $usuario . " </b>ya existe";
         } else {
 
-//            $hash = password_hash($contra, PASSWORD_BCRYPT);            
-//            $sql = "INSERT INTO USUARIO VALUES('$usuario', '$hash')";
-
-            $sql = "INSERT INTO USUARIO VALUES('$usuario', '$contra')";
+            $hash = password_hash($contra, PASSWORD_BCRYPT);
+            $sql = "INSERT INTO USUARIO VALUES('$usuario', '$hash')";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
+            
             echo "Te has registrado correctamente. Regresa al inicio para logearte.";
             return true;
         }
@@ -32,32 +31,26 @@ class UsuarioRepositorio {
 
     public function comprobarInicioSesion($usuario, $contra) {
         include __DIR__ . '/../../core/conexionBd.php';
+        
         $conn = (new ConexionBd())->getConexion();
-        $sql = "SELECT * from usuario where usuario = '$usuario' and contrasenia = '$contra'";
-
+        $sql = "SELECT * from usuario where usuario = '$usuario'";
         $cursor = $conn->prepare($sql);
         $cursor->execute();
-        $rows = $cursor->fetch(PDO::FETCH_BOUND);
-
-        //Si hay coincidencia entre los datos pasados por el usuario y la base de datos devolvemos true
-        if ($rows === true) {
-            return true;
-        } else {
-            return false;
+        
+        if ($fila = $cursor->fetch()) {
+            if (password_verify($contra, $fila['contrasenia'])) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
-        //Si el hash me funcionara la comprobación se haría de esta manera
-        /*
-         * Se comprueba si hay coincidencias de usuario y contrasena
-          if ($rows === true) {
-          $rows = $cursor->fetch();
-         * Esto comprueba la contraseña que ha pasado el usuario con la que hay guardada en la base
-          if (password_verify($contra, $rows['contrasenia'])) {
-          return true;
-          } else {
-          return false;
-          }
-          } */
+        //Si hay coincidencia entre los datos pasados por el usuario y la base de datos devolvemos true
+//        if ($rows === true) {
+//            return true;
+//        } else {
+//            return false;
+//        }
     }
 
 }
