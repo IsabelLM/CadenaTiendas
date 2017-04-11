@@ -20,6 +20,7 @@ class usuariosController {
         if ($params == false) {
             echo "<b>Los datos introducidos son incorrectos.</b>";
         } else {
+
             $_SESSION['usuario'] = ($_POST['usuario']);
             $_SESSION['usuarioLoggeado'] = true;
         }

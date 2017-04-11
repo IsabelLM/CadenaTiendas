@@ -1,4 +1,4 @@
-
+<?php ob_start() ?>
 
 <html>
     <head>
@@ -15,9 +15,12 @@
                 Contraseña: <input type="password" name="contra" required><br>
                 <input type="submit" value="Registrarse">
             </form>
-            <a href="index.php?ctl=inicio">Inicio</a> |
+            <a href="index.php?ctl=inicio">Inicio</a>
 
         </div>
 
     </body>
 </html>
+<?php $contenido = ob_get_clean() ?>
+
+<?php include 'base.php' ?>

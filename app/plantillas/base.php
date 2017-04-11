@@ -18,15 +18,14 @@
                         Contraseña: <input type="password" name="contra"  required><br>
                         <input type="submit" value="Iniciar Sesión">
                     </form>
-                    <form action="index.php?ctl=nuevoRegistro" method="POST">   
-                        <input type="submit" value="Registrarse">
-                    </form>
+                    <a href="index.php?ctl=nuevoRegistro">Registrarse</a>
+
                 </div>
 
                 <?php
             } else {
                 ?>            
-                <div class="formularioInicioSesion">Bienvenido <?php echo $_SESSION['usuario']?>
+                <div class="formularioInicioSesion">Bienvenido <?php echo $_SESSION['usuario'] ?>
                     <a href="index.php?ctl=cerrarSesion">Cerrar sesion</a></div>
 
             <?php }
