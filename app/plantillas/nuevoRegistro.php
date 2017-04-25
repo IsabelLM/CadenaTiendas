@@ -1,4 +1,4 @@
-<?php ob_start() ?>
+<?/php ob_start() ?>
 
 <html>
     <head>
@@ -21,6 +21,6 @@
 
     </body>
 </html>
-<?php $contenido = ob_get_clean() ?>
+<?/php $contenido = ob_get_clean() ?>
 
-<?php include 'base.php' ?>
+<?/php include 'base.php' ?>

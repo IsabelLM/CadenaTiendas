@@ -17,20 +17,24 @@ class usuariosController {
             require __DIR__ . '/../Repositorio/usuarioRepositorio.php';
             $params = (new UsuarioRepositorio)->comprobarInicioSesion($_POST['usuario'], $_POST['contra']);
         }
-        if ($params == false) {
+        if ($params == null) {
             echo "<b>Los datos introducidos son incorrectos.</b>";
         } else {
-
             $_SESSION['usuario'] = ($_POST['usuario']);
             $_SESSION['usuarioLoggeado'] = true;
+            $_SESSION['grupo'] = $params;
         }
         require __DIR__ . '/../../app/plantillas/usuariosSesion.php';
     }
 
     public function cerrarSesion() {
         $_SESSION['usuarioLoggeado'] = null;
+        $_SESSION['grupo'] = null;
+
         session_destroy();
+
         require __DIR__ . '/../../app/plantillas/usuariosSesion.php';
+
     }
 
 }

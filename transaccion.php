@@ -1,7 +1,7 @@
 <?php
 
 require_once 'conexion.php';
-//include 'conexion.php';
+//include 'conexion.php'; 
 
 $pdo->beginTransaction();
 

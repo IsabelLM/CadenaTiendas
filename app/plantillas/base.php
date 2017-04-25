@@ -25,7 +25,7 @@
                 <?php
             } else {
                 ?>            
-                <div class="formularioInicioSesion">Bienvenido <?php echo $_SESSION['usuario'] ?>
+                <div class="formularioInicioSesion">Bienvenido/a <?php echo $_SESSION['usuario'] ?>
                     <a href="index.php?ctl=cerrarSesion">Cerrar sesion</a></div>
 
             <?php }
@@ -34,11 +34,19 @@
 
         <hr>
         <a href="index.php?ctl=inicio">Inicio</a> |
-        <a href="index.php?ctl=actualizaImagenes">Actualizar imágenes</a> |
+
+        <?php
+        if (isset($_SESSION['grupo'])) {
+            //Se comprueba si el grupo pertenece a admin para poder darle acceso a otros sitios  
+            if ($_SESSION['grupo'] == 'admin') {
+                ?>
+                <a href="index.php?ctl=actualizaImagenes">Actualizar imágenes</a> |
+    <?php }
+} ?>
         <hr>
     </body>
     <div id="contenido">
-        <?= $contenido ?>
+<?= $contenido ?>
     </div>
     <footer>
         <hr>

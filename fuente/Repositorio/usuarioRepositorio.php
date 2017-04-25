@@ -20,7 +20,7 @@ class UsuarioRepositorio {
         } else {
 
             $hash = password_hash($contra, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO USUARIO VALUES('$usuario', '$hash')";
+            $sql = "INSERT INTO USUARIO (usuario, contrasenia) VALUES('$usuario', '$hash')";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             
@@ -39,9 +39,10 @@ class UsuarioRepositorio {
         
         if ($fila = $cursor->fetch()) {
             if (password_verify($contra, $fila['contrasenia'])) {
-                return true;
+                $grupo = $fila['grupo'];
+                return $grupo;
             } else {
-                return false;
+                return null;
             }
         }
 
