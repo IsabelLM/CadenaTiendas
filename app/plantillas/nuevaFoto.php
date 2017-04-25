@@ -1,4 +1,3 @@
-
 <?php ob_start() ?>
 
 <?php if(isset($params['mensaje'])) :?>
