@@ -1,6 +1,6 @@
 <?php ob_start() ?>
 <?php  if (isset($_SESSION['usuarioLoggeado']) == false){
-    echo "Has cerrado sesion";
+    echo "Has cerrado sesión";
 }else{
     echo "Has iniciado sesión como ". $_SESSION['usuario'];
 }

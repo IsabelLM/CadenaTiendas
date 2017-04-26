@@ -3,7 +3,7 @@ class Entidades
 { private $table;
   private $db;
   private $conectar;
-
+//Entidades no hace falta. 
   public function __construct($table, $adapter)
   { $this->table=(string) $table;
 

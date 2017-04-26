@@ -23,7 +23,7 @@ class UsuarioRepositorio {
             $sql = "INSERT INTO USUARIO (usuario, contrasenia) VALUES('$usuario', '$hash')";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
-            
+
             echo "Te has registrado correctamente. Regresa al inicio para logearte.";
             return true;
         }
@@ -31,12 +31,12 @@ class UsuarioRepositorio {
 
     public function comprobarInicioSesion($usuario, $contra) {
         include __DIR__ . '/../../core/conexionBd.php';
-        
+
         $conn = (new ConexionBd())->getConexion();
         $sql = "SELECT * from usuario where usuario = '$usuario'";
         $cursor = $conn->prepare($sql);
         $cursor->execute();
-        
+
         if ($fila = $cursor->fetch()) {
             if (password_verify($contra, $fila['contrasenia'])) {
                 $grupo = $fila['grupo'];
@@ -45,13 +45,6 @@ class UsuarioRepositorio {
                 return null;
             }
         }
-
-        //Si hay coincidencia entre los datos pasados por el usuario y la base de datos devolvemos true
-//        if ($rows === true) {
-//            return true;
-//        } else {
-//            return false;
-//        }
     }
 
 }
