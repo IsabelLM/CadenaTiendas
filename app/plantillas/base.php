@@ -34,7 +34,9 @@
 
         <hr>
         <a href="index.php?ctl=inicio">Inicio</a> |
-        <a href="">Ver productos</a> |  
+        <a href="">Categorias</a> |  
+        <a href="">Todos los productos</a> |  
+        <a href="">Nuestras tiendas</a> |  
         <?php
         if (isset($_SESSION['grupo'])) {
             //Se comprueba si el grupo pertenece a admin para poder darle acceso a otros sitios  
