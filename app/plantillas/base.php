@@ -45,6 +45,13 @@
                 <a href="index.php?ctl=actualizaImagenes">Actualizar imágenes</a> |
             <?php }
         }
+        if (isset($_SESSION['grupo'])) {
+            //Se comprueba si el grupo pertenece a cliente se le dará acceso a poder editar su perfil 
+            if ($_SESSION['grupo'] == 'cliente') {
+                ?>
+                <a href="index.php?ctl=editarPerfil">Mi cuenta</a> |
+            <?php }
+        }
         ?>
         <hr>
     </body>

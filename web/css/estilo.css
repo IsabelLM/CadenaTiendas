@@ -22,6 +22,8 @@ header h1{
     height: 0px;
 
 }
+
+
 .formularioInicioSesion{
     border: 1px solid black;
     float: right;
@@ -45,6 +47,25 @@ body{
 #registro input{
     text-align: justify;
     margin: 5px;
+}
+
+form{
+    background-color: rgba(146, 146, 146, 0.23);
+    border: 1px solid black;
+    padding: 10px;
+    width: 40%;
+    height: 10%;
+}
+
+#registro input {
+    text-align: justify;
+    margin: 5px;
+    color: #3F51B5;
+    background-color: rgb(255, 254, 250);
+    border-radius: 10px;
+    width: 78%;
+    text-align: center;
+    font-weight: bold;
 }
 .tablaArticulos td, .tablaArticulos th{
     background-color: whitesmoke;

@@ -36,5 +36,9 @@ class usuariosController {
         require __DIR__ . '/../../app/plantillas/usuariosSesion.php';
 
     }
+    
+    public function editarPerfil(){
+        require __DIR__ . '/../../app/plantillas/editarPerfil.php';
+    }
 
 }
