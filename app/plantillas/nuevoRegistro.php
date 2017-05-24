@@ -11,7 +11,7 @@
             
             <!--Añadir que se puede ver/modificar el perfil del usuario-->
             <h1>Formulario de registro para nuevos usuarios</h1>
-            <form action="index.php?ctl=nuevoRegistro" method="POST">
+            <form action="index.php?ctl=nuevoRegistro" method="POST" id="formRegistro">
                 Usuario: <input type="text" name="usuario" value=""required> <br>
                 Contraseña: <input type="password" name="contra" required><br>
                 <b>Datos de facturación</b><br>

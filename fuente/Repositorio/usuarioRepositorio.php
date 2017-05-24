@@ -47,4 +47,26 @@ class UsuarioRepositorio {
         }
     }
 
+    public function datosUsuario($usuario) {
+        include __DIR__ . '/../../core/conexionBd.php';
+        $sql = "SELECT * from usuario where usuario = '$usuario'";
+        $con = (new ConexionBd())->getConexion();
+        $cursor = $con->prepare($sql);
+        $cursor->execute();
+//        
+//        $cursor->bindColumn('nombre', $datos['nombre']);
+//        $cursor->bindColumn('apellido', $datos['apellido']);
+//        $cursor->bindColumn('direccion', $datos['direccion']);
+//        $cursor->bindColumn('cp', $datos['cp']);
+//        $cursor->bindColumn('ciudad', $datos['ciudad']);
+//        $cursor->fetch(PDO::FETCH_BOUND);
+
+        if ($fila = $cursor->fetch()) {
+            $datos = array("nombre" => $fila['nombre'], "apellido" => $fila['apellido'], "direccion" => $fila['direccion'],
+                "cp" => $fila["cp"], "ciudad" => $fila["ciudad"]);
+        }
+
+        return $datos;
+    }
+
 }

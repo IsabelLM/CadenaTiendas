@@ -13,7 +13,7 @@
             if (isset($_SESSION['usuarioLoggeado']) == false) {
                 ?>
                 <div class="formularioInicioSesion" >
-                    <form action="index.php?ctl=inicioSesion" method="POST">
+                    <form action="index.php?ctl=inicioSesion" id="formLogin" method="POST">
                         Usuario: <input type="text" name="usuario" value=""required> <br>
                         Contraseña: <input type="password" name="contra"  required><br>
                         <input type="submit" value="Iniciar Sesión">

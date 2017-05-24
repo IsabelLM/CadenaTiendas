@@ -49,21 +49,19 @@ body{
     margin: 5px;
 }
 
-form{
+#formRegistro, .formPerfil{
     background-color: rgba(146, 146, 146, 0.23);
     border: 1px solid black;
     padding: 10px;
-    width: 40%;
-    height: 10%;
+    width: 25%;
 }
 
-#registro input {
-    text-align: justify;
+#registro input, .formPerfil input {
     margin: 5px;
     color: #3F51B5;
     background-color: rgb(255, 254, 250);
     border-radius: 10px;
-    width: 78%;
+    width: 100%;
     text-align: center;
     font-weight: bold;
 }

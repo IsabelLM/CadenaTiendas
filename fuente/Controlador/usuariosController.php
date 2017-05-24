@@ -34,10 +34,13 @@ class usuariosController {
         session_destroy();
 
         require __DIR__ . '/../../app/plantillas/usuariosSesion.php';
-
     }
-    
-    public function editarPerfil(){
+
+    public function editarPerfil() {
+        //Rellena el formulario con los datos del usuario que tiene, falta permitir que pueda editarlos y se actualice su perfil
+        $usuario = $_SESSION['usuario'];
+        require __DIR__ . '/../Repositorio/usuarioRepositorio.php';
+        $params = (new UsuarioRepositorio)->datosUsuario($usuario);
         require __DIR__ . '/../../app/plantillas/editarPerfil.php';
     }
 
