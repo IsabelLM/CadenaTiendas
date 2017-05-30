@@ -54,13 +54,6 @@ class UsuarioRepositorio {
         $con = (new ConexionBd())->getConexion();
         $cursor = $con->prepare($sql);
         $cursor->execute();
-//        
-//        $cursor->bindColumn('nombre', $datos['nombre']);
-//        $cursor->bindColumn('apellido', $datos['apellido']);
-//        $cursor->bindColumn('direccion', $datos['direccion']);
-//        $cursor->bindColumn('cp', $datos['cp']);
-//        $cursor->bindColumn('ciudad', $datos['ciudad']);
-//        $cursor->fetch(PDO::FETCH_BOUND);
 
         if ($fila = $cursor->fetch()) {
             $datos = array("nombre" => $fila['nombre'], "apellido" => $fila['apellido'], "direccion" => $fila['direccion'],
@@ -70,24 +63,23 @@ class UsuarioRepositorio {
         return $datos;
     }
 
-    public function actualizarDatos( $datos) {
+    public function actualizarDatos($datos, $usuario) {
         include __DIR__ . '/../../core/conexionBd.php';
-        
-        foreach ($datos as $key => $value) {
-        $datos2 = [$key => $value];
-        }
+
+        //Estas dos lineas borrar después, son para comprobar.
+        $datos2 = $datos[0];
         print_r($datos2);
-            
-        
-        //echo $datos['nombre'];
-       
-        $sql = "UPDATE usuario SET nombre = " . $datos["nombre"] .
-                ",apellidos = " . $datos["apellido"] .
-                ",direccion = " . $datos["direccion"] .
-                ",cp = " . $datos["cp"] .
-                ",ciudad = " . $datos["ciudad"];
+      
+
+        $sql = "UPDATE usuario SET nombre = ? , apellido = ? , direccion = ? , cp = ? , ciudad = ? WHERE usuario = '$usuario'";
         $con = (new ConexionBd())->getConexion();
         $cursor = $con->prepare($sql);
+        $cursor->bindParam(1, $datos2['nombre']);
+        $cursor->bindParam(2, $datos2['apellido']);
+        $cursor->bindParam(3, $datos2['direccion']);
+        $cursor->bindParam(4, $datos2['cp']);
+        $cursor->bindParam(5, $datos2['ciudad']);
+        
         $cursor->execute();
     }
 
