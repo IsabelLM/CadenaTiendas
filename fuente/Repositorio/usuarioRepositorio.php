@@ -47,6 +47,7 @@ class UsuarioRepositorio {
         }
     }
 
+    //Devuelve la información del usuario
     public function datosUsuario($usuario) {
         include __DIR__ . '/../../core/conexionBd.php';
         $sql = "SELECT * from usuario where usuario = '$usuario'";
@@ -67,6 +68,27 @@ class UsuarioRepositorio {
         }
 
         return $datos;
+    }
+
+    public function actualizarDatos( $datos) {
+        include __DIR__ . '/../../core/conexionBd.php';
+        
+        foreach ($datos as $key => $value) {
+        $datos2 = [$key => $value];
+        }
+        print_r($datos2);
+            
+        
+        //echo $datos['nombre'];
+       
+        $sql = "UPDATE usuario SET nombre = " . $datos["nombre"] .
+                ",apellidos = " . $datos["apellido"] .
+                ",direccion = " . $datos["direccion"] .
+                ",cp = " . $datos["cp"] .
+                ",ciudad = " . $datos["ciudad"];
+        $con = (new ConexionBd())->getConexion();
+        $cursor = $con->prepare($sql);
+        $cursor->execute();
     }
 
 }

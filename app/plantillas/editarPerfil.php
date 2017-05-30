@@ -7,7 +7,7 @@
     </head>
     <body>
         <h2>Perfil de  <b><?php echo $_SESSION['usuario'] ?></b></h2>
-        <form action="editarPerfil.php" method="POST" class="formPerfil">
+        <form action="index.php?ctl=editarPerfil" method="POST" class="formPerfil">
             <b>Datos de facturación</b><br>
             <label>Nombre:</label> <input type="text" name="nombre" placeholder="<?= $params['nombre'] ?>"><br>
             <label>Apellidos:</label> <input type="text" name="apellidos" placeholder="<?= $params['apellido'] ?>"><br>
