@@ -66,8 +66,9 @@ class UsuarioRepositorio {
     public function actualizarDatos($datos, $usuario) {
         include __DIR__ . '/../../core/conexionBd.php';
 
-        //Estas dos lineas borrar después, son para comprobar.
+        
         $datos2 = $datos[0];
+        //Borrar esta linea después.
         print_r($datos2);
       
 
