@@ -48,10 +48,10 @@ class UsuarioRepositorio {
     }
 
     //Devuelve la información del usuario
-    public function datosUsuario($usuario) {
-        include __DIR__ . '/../../core/conexionBd.php';
+    public function datosUsuario($usuario, $con) {
+        // include __DIR__ . '/../../core/conexionBd.php';
         $sql = "SELECT * from usuario where usuario = '$usuario'";
-        $con = (new ConexionBd())->getConexion();
+        //$con = (new ConexionBd())->getConexion();
         $cursor = $con->prepare($sql);
         $cursor->execute();
 
@@ -63,24 +63,20 @@ class UsuarioRepositorio {
         return $datos;
     }
 
-    public function actualizarDatos($datos, $usuario) {
-        include __DIR__ . '/../../core/conexionBd.php';
+    public function actualizarDatos($datos, $usuario, $con) {
+//        include __DIR__ . '/../../core/conexionBd.php';
 
-        
         $datos2 = $datos[0];
-        //Borrar esta linea después.
-        print_r($datos2);
-      
 
         $sql = "UPDATE usuario SET nombre = ? , apellido = ? , direccion = ? , cp = ? , ciudad = ? WHERE usuario = '$usuario'";
-        $con = (new ConexionBd())->getConexion();
+        //$con = (new ConexionBd())->getConexion();
         $cursor = $con->prepare($sql);
         $cursor->bindParam(1, $datos2['nombre']);
         $cursor->bindParam(2, $datos2['apellido']);
         $cursor->bindParam(3, $datos2['direccion']);
         $cursor->bindParam(4, $datos2['cp']);
         $cursor->bindParam(5, $datos2['ciudad']);
-        
+
         $cursor->execute();
     }
 
