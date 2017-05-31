@@ -11,20 +11,29 @@ class UsuarioRepositorio {
         return $rows;
     }
 
-    public function crearUsuarioNuevo($usuario, $contra) {
+    public function crearUsuarioNuevo($datos) {
         include __DIR__ . '/../../core/conexionBd.php';
         $conn = (new ConexionBd())->getConexion();
 
-        if ($this->comprobarUsuarioExiste($usuario, $conn) === true) {
-            echo "<br>El usuario <b>" . $usuario . " </b>ya existe";
+        if ($this->comprobarUsuarioExiste($datos['usuario'], $conn) === true) {
+            echo "<br>El usuario <b>" . $datos['usuario'] . " </b>ya existe";
         } else {
 
-            $hash = password_hash($contra, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO USUARIO (usuario, contrasenia) VALUES('$usuario', '$hash')";
+            $hash = password_hash($datos['contra'], PASSWORD_BCRYPT);
+            $sql = "INSERT INTO USUARIO (usuario, contrasenia, nombre, apellido, direccion, cp, ciudad) VALUES(?, '$hash', ? , ? , ? , ? ,? )";
+
+
             $stmt = $conn->prepare($sql);
+            $stmt->bindParam(1, $datos['usuario']);
+            $stmt->bindParam(2, $datos['nombre']);
+            $stmt->bindParam(3, $datos['apellido']);
+            $stmt->bindParam(4, $datos['direccion']);
+            $stmt->bindParam(5, $datos['cp']);
+            $stmt->bindParam(6, $datos['ciudad']);
+
             $stmt->execute();
 
-            echo "Te has registrado correctamente. Regresa al inicio para logearte.";
+           
             return true;
         }
     }
