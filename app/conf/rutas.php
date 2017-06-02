@@ -1,7 +1,8 @@
 <?php
 
 // enrutamiento
-$mapeoRutas = array('inicio' =>
+$mapeoRutas = array(
+    'inicio' =>
     array('controller' => 'defaultController', 'action' => 'inicio'),
     'actualizaImagenes' =>
     array('controller' => 'articuloController', 'action' => 'actualizaImagenes'),
@@ -9,6 +10,8 @@ $mapeoRutas = array('inicio' =>
     array('controller' => 'articuloController', 'action' => 'verArticulo'),
     'nuevaFoto' =>
     array('controller' => 'articuloController', 'action' => 'nuevaFoto'),
+    'categoria' =>
+    array('controller' => 'articuloController', 'action' => 'categoria'),
     'nuevoRegistro' =>
     array('controller' => 'usuariosController', 'action' => 'nuevoRegistro'),
     'inicioSesion' =>
