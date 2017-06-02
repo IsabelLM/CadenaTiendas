@@ -34,7 +34,7 @@
 
         <hr>
         <a href="index.php?ctl=inicio">Inicio</a> |
-        <a href="index.php?ctl=categoria">Categorias</a> |  
+        <a href="index.php?ctl=categoria&id=">Categorias</a> |  
         <a href="">Todos los productos</a> |  
         <a href="">Nuestras tiendas</a> |  
         <?php

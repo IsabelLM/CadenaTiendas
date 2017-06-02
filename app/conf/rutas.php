@@ -12,6 +12,9 @@ $mapeoRutas = array(
     array('controller' => 'articuloController', 'action' => 'nuevaFoto'),
     'categoria' =>
     array('controller' => 'articuloController', 'action' => 'categoria'),
+    //no es necesario por ahora el Ver Categoria
+    'verCategoria' =>
+    array('controller' => 'articuloController', 'action' => 'verCategoria'),
     'nuevoRegistro' =>
     array('controller' => 'usuariosController', 'action' => 'nuevoRegistro'),
     'inicioSesion' =>

@@ -8,12 +8,14 @@
         <ul>
             <?php for ($index = 1; $index < count($categorias); $index++) {
                 ?>
-                <li><?php print_r($categorias[$index]) ?></li>
+                <li><a href="index.php?ctl=categoria&id=<?php echo $index ?>"><?php print_r($categorias[$index]) ?></a></li>
             <?php }
             ?>
         </ul>
+
         <?php
-        print_r($categorias);
+        //print_r($categorias[$_GET['id']]);
+        // print_r($categorias);
         ?>
     </body>
 </html>
