@@ -71,6 +71,6 @@
     <footer>
         <hr>
         <p align="center">- Pie de página -</p>
-        <footer>
-            </body>
-            </html>
+    </footer>
+</body>
+</html>

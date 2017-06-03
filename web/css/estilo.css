@@ -7,6 +7,23 @@ and open the template in the editor.
     Created on : 10-abr-2017, 16:31:53
     Author     : Isabel
 */
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body{
+    width:90%;
+    margin: 10px auto;
+    margin-bottom: 10%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+}
+
 header{
     background-color: beige;
     display: inline-block;
@@ -33,11 +50,6 @@ header h1{
 }
 .formularioInicioSesion input{
     margin: 1px;
-}
-
-body{
-    width:90%;
-    margin: 10px auto;
 }
 
 #registro{
@@ -103,6 +115,13 @@ ul, ol {
     text-decoration: underline;
 }
 
-
-
+#listadoCategorias{
+    float: left;
+    padding: 10px;
+    background-color: aliceblue;
+    margin-right: 10px;
+}
+#vistaCategoria{
+    float:left;
+}
 

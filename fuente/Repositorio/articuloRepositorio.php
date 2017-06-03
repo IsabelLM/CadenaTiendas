@@ -70,4 +70,19 @@ class ArticuloRepositorio {
         return $categoria;
     }
 
+    public function articuloPorCategoria($categoria, $con) {
+        $sql = "SELECT id, nombre
+              FROM articulo
+             WHERE idFamilia = '$categoria'";
+        $cursor = $con->prepare($sql);
+        $articulo = array();
+        $cursor->execute();
+
+        while ($fila = $cursor->fetch()) {
+            $articulo[$fila['id']] = $fila['nombre'];
+        }
+        ;
+        return $articulo;
+    }
+
 }

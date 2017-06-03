@@ -39,13 +39,17 @@ class ArticuloController {
 
     //Para la sección de categorias. 
     public function categoria() {
-        require __DIR__ . '/../Repositorio/articuloRepositorio.php';
+        require_once __DIR__ . '/../Repositorio/articuloRepositorio.php';
         $categorias = (new ArticuloRepositorio)->obtenerCategorias();
-
+        require_once __DIR__ . '/../../core/conexionBd.php';
+        $con = (new ConexionBd())->getConexion();
+        
         //Si se ha pulsado sobre una categoria en concreto se recogerá cual es 
         //y se mostrarán los productos de dicha categoria. SIN TERMINAR. 
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['id'] != null ) {
-            print_r($categorias[$_GET['id']]);
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['id'] != null) {
+            $categoriaElegida = ($categorias[$_GET['id']]);
+            $articulo = (new ArticuloRepositorio)->articuloPorCategoria($_GET['id'], $con);
+            
         }
         require __DIR__ . '/../../app/plantillas/categorias.php';
     }
