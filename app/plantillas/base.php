@@ -33,30 +33,40 @@
         </header>
 
         <hr>
-        <a href="index.php?ctl=inicio">Inicio</a> |
-        <a href="index.php?ctl=categoria&id=">Categorias</a> |  
-        <a href="">Todos los productos</a> |  
-        <a href="">Nuestras tiendas</a> |  
-        <?php
-        if (isset($_SESSION['grupo'])) {
-            //Se comprueba si el grupo pertenece a admin para poder darle acceso a otros sitios  
-            if ($_SESSION['grupo'] == 'admin') {
-                ?>
-                <a href="index.php?ctl=actualizaImagenes">Actualizar imágenes</a> |
-            <?php }
-        }
-        if (isset($_SESSION['grupo'])) {
-            //Se comprueba si el grupo pertenece a cliente se le dará acceso a poder editar su perfil 
-            if ($_SESSION['grupo'] == 'cliente') {
-                ?>
-                <a href="index.php?ctl=editarPerfil">Mi cuenta</a> |
-            <?php }
-        }
-        ?>
+        <div id="header">
+            <ul class="nav">
+                <li><a href="index.php?ctl=inicio">Inicio</a> </li>
+                <li><a href="index.php?ctl=categoria&id=">Categorias</a></li>
+                <li><a href="">Todos los productos</a>   </li>
+                <li><a href="">Nuestras tiendas</a>   </li>
+                <?php
+                if (isset($_SESSION['grupo'])) {
+                    //Se comprueba si el grupo pertenece a admin para poder darle acceso a otros sitios  
+                    if ($_SESSION['grupo'] == 'admin') {
+                        ?>
+                        <li> <a href="index.php?ctl=actualizaImagenes">Actualizar imágenes</a> </li>
+                        <?php
+                    }
+                }
+                if (isset($_SESSION['grupo'])) {
+                    //Se comprueba si el grupo pertenece a cliente se le dará acceso a poder editar su perfil 
+                    if ($_SESSION['grupo'] == 'cliente') {
+                        ?>
+                        <li> <a href="index.php?ctl=editarPerfil">Mi cuenta</a></li>
+                        <?php
+                    }
+                }
+                ?>                       
+            </ul>
+        </div>
+        <br>
         <hr>
+
+
+
     </body>
     <div id="contenido">
-<?= $contenido ?>
+        <?= $contenido ?>
     </div>
     <footer>
         <hr>

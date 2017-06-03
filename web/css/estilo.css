@@ -69,5 +69,40 @@ body{
     background-color: whitesmoke;
 }
 
+#header {
+    margin:auto;
+    width:100%;
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+ul, ol {
+    list-style:none;
+}
+
+.nav{
+    width:100%;
+    margin-right: 10px;
+
+}
+
+.nav > li {
+    float:left;
+
+}
+
+.nav li a {
+    color:black;
+    text-decoration:none;
+    padding:5px;
+
+}
+
+.nav li a:hover {
+    font-size: 1.1em;
+    text-decoration: underline;
+}
+
+
 
 
