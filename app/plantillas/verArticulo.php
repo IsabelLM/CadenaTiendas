@@ -19,8 +19,9 @@
                 if ($_SESSION['grupo'] == 'admin') {
                     ?><a href="index.php?ctl=nuevaFoto&id=<?= $params['id'] ?>&nombre=<?= $params['nombre'] ?>">Subir nueva foto</a>
                     <?php
-                }//Si no es el admin, estará disponible la opción para comprar el articuloelse {
-                ?><a href="">Añadir al carrito</a><?php
+                } else {//Si no es el admin, estará disponible la opción para comprar el articulo
+                    ?><a href="">Añadir al carrito</a><?php
+                }
             } else {
                 ?><a href="">Añadir al carrito</a><?php
             }
