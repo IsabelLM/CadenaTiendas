@@ -12,9 +12,8 @@ $mapeoRutas = array(
     array('controller' => 'articuloController', 'action' => 'nuevaFoto'),
     'categoria' =>
     array('controller' => 'articuloController', 'action' => 'categoria'),
-    //no es necesario por ahora el Ver Categoria
-    'verCategoria' =>
-    array('controller' => 'articuloController', 'action' => 'verCategoria'),
+    'verTodosArticulos' =>
+    array('controller' => 'articuloController', 'action' => 'verTodosArticulos'),
     'nuevoRegistro' =>
     array('controller' => 'usuariosController', 'action' => 'nuevoRegistro'),
     'inicioSesion' =>
@@ -23,4 +22,6 @@ $mapeoRutas = array(
     array('controller' => 'usuariosController', 'action' => 'cerrarSesion'),
     'editarPerfil' =>
     array('controller' => 'usuariosController', 'action' => 'editarPerfil'),
+    'verFoto' =>
+    array('controller' => 'articuloController', 'action' => 'verFoto'),
 );

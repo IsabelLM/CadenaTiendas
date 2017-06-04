@@ -44,6 +44,7 @@ class ArticuloRepositorio {
     }
 
     public function actualizaFoto($params) {
+
         $sql = "UPDATE articulo
                SET foto = ?
              WHERE id = ?";
@@ -55,33 +56,50 @@ class ArticuloRepositorio {
         $subeFoto->execute();
     }
 
+    public function verFoto($id) {
+        include __DIR__ . '/../../core/conexionBd.php';
+
+        $sql = "SELECT foto
+              FROM articulo
+             WHERE id = '$id'";
+        $con = (new ConexionBd())->getConexion();
+        $cursor = $con->prepare($sql);
+        $cursor->execute();
+        $cursor->bindColumn(1, $imagen, PDO::PARAM_LOB, 0, PDO::SQLSRV_ENCODING_BINARY);
+        $cursor->fetch(PDO::FETCH_BOUND);
+        echo $imagen;
+    }
+
     public function obtenerCategorias() {
         include __DIR__ . '/../../core/conexionBd.php';
         $sql = "SELECT id, nombre FROM familia";
-
         $con = (new ConexionBd())->getConexion();
-
         $cursor = $con->prepare($sql);
         $cursor->execute();
 
         while ($fila = $cursor->fetch()) {
             $categoria[$fila['id']] = $fila['nombre'];
         }
+        
         return $categoria;
     }
 
-    public function articuloPorCategoria($categoria, $con) {
-        $sql = "SELECT id, nombre
+    public function articuloPorCategoria($categoria, $con, $todos) {
+        if ($todos == false) {
+            $sql = "SELECT id, nombre, PVP
               FROM articulo
              WHERE idFamilia = '$categoria'";
+        } else {
+            $sql = "SELECT id, nombre, PVP
+              FROM articulo";
+        }
         $cursor = $con->prepare($sql);
         $articulo = array();
         $cursor->execute();
 
-        while ($fila = $cursor->fetch()) {
-            $articulo[$fila['id']] = $fila['nombre'];
+        while ($fila = $cursor->fetch()) {            
+            $articulo[$fila['id']] = array($fila['id'] => [$fila['nombre'], $fila['PVP'], $fila['id']]);
         }
-        ;
         return $articulo;
     }
 

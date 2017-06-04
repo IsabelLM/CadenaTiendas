@@ -25,7 +25,8 @@ class ArticuloController {
 
     public function nuevaFoto() {
         $params = array('id' => '',
-            'foto' => '',);
+            'foto' => '');
+
         $id = $_GET['id'];
         $nombre = $_GET['nombre'];
         require __DIR__ . '/../../app/plantillas/nuevaFoto.php';
@@ -37,26 +38,38 @@ class ArticuloController {
         }
     }
 
-    //Para la sección de categorias. 
+    public function verFoto() {
+        $id = $_GET['id'];
+        require_once __DIR__ . '/../Repositorio/articuloRepositorio.php';
+        $articulo = (new ArticuloRepositorio)->verFoto($id);
+    }
+
+    //Obtiene un listado de las categorias que hay. 
+    //Si haces click sobre una, se mostrará otro listado de los articulos que pertenecen a dicha categoria.
     public function categoria() {
         require_once __DIR__ . '/../Repositorio/articuloRepositorio.php';
         $categorias = (new ArticuloRepositorio)->obtenerCategorias();
         require_once __DIR__ . '/../../core/conexionBd.php';
         $con = (new ConexionBd())->getConexion();
-        
+
         //Si se ha pulsado sobre una categoria en concreto se recogerá cual es 
-        //y se mostrarán los productos de dicha categoria. SIN TERMINAR. 
+        //y se mostrarán los productos de dicha categoria. 
         if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['id'] != null) {
             $categoriaElegida = ($categorias[$_GET['id']]);
-            $articulo = (new ArticuloRepositorio)->articuloPorCategoria($_GET['id'], $con);
-            
+            $todos = false;
+            $articulo = (new ArticuloRepositorio)->articuloPorCategoria($_GET['id'], $con, $todos);
         }
         require __DIR__ . '/../../app/plantillas/categorias.php';
     }
 
-    //No es necesario por ahora
-    public function verCategoria() {
-        require __DIR__ . '/../../app/plantillas/verCategoria.php';
+    //Muestra un listado de todos los productos.
+    public function verTodosArticulos() {
+        require_once __DIR__ . '/../../core/conexionBd.php';
+        require_once __DIR__ . '/../Repositorio/articuloRepositorio.php';
+        $con = (new ConexionBd())->getConexion();
+        $todos = true;
+        $articulo = (new ArticuloRepositorio)->articuloPorCategoria(null, $con, $todos);
+        require __DIR__ . '/../../app/plantillas/verTodosArticulos.php';
     }
 
 }

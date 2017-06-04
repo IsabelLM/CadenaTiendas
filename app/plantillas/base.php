@@ -37,7 +37,7 @@
             <ul class="nav">
                 <li><a href="index.php?ctl=inicio">Inicio</a> </li>
                 <li><a href="index.php?ctl=categoria&id=">Categorias</a></li>
-                <li><a href="">Todos los productos</a>   </li>
+                <li><a href="index.php?ctl=verTodosArticulos">Todos los productos</a>   </li>
                 <li><a href="">Nuestras tiendas</a>   </li>
                 <?php
                 if (isset($_SESSION['grupo'])) {

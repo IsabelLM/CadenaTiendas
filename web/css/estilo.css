@@ -125,3 +125,9 @@ ul, ol {
     float:left;
 }
 
+#tablaCategoria tr{
+    background-color:beige;
+}
+#tablaCategoria td, th{
+    padding: 10px;
+}
