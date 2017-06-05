@@ -72,4 +72,19 @@ class ArticuloController {
         require __DIR__ . '/../../app/plantillas/verTodosArticulos.php';
     }
 
+    public function anadirAlCarrito() {
+        $id = $_GET['id'];
+        $nombre = $_GET['nombre'];
+        $pvp = $_GET['pvp'];
+
+        $_SESSION['productos'][] = array("nombre" => $nombre, "pvp" => $pvp);
+        $_SESSION['total'] += $pvp;
+        //echo "total:" . $_SESSION['total'];
+        //session_destroy();
+//        $_SESSION['idArticulo'] = $id;
+//        $_SESSION['nombreArticulo'] = $nombre;
+//        $_SESSION['PVP'] = $pvp;
+        header("Location:" . $_SERVER['HTTP_REFERER']);
+    }
+
 }

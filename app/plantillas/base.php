@@ -30,6 +30,7 @@
 
             <?php }
             ?>
+
         </header>
 
         <hr>
@@ -58,6 +59,37 @@
                 }
                 ?>                       
             </ul>
+            <div id="carrito">Carrito
+                <div id="infoCarrito">
+                    <table>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                        </tr>
+                        <?php
+                        if (isset($_SESSION['productos'])) {
+                            foreach ($_SESSION['productos'] as $key => $value) {
+                                ?>  <tr><?php
+                                    foreach ($value as $value2) {
+                                        ?>
+                                        <td><?php echo $value2 ?></td>
+
+                                        <?php
+                                    }
+                                    ?></tr><?php
+                            } {
+                                
+                            }
+                            ?><tr><th>Total</th><td><?php echo $_SESSION['total'] . "€" ?></td></tr>
+                                
+                            <?php
+                        }
+                        ?>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
         </div>
         <br>
         <hr>

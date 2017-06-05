@@ -131,3 +131,14 @@ ul, ol {
 #tablaCategoria td, th{
     padding: 10px;
 }
+
+#infoCarrito{
+    display:none;
+}
+
+#carrito:hover > #infoCarrito   {
+    display: block;
+}
+#carrito{
+    float: right;
+}
