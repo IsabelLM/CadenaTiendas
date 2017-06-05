@@ -61,39 +61,51 @@
             </ul>
             <div id="carrito">Carrito
                 <div id="infoCarrito">
-                    <table>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Precio</th>
-                        </tr>
-                        <?php
-                        if (isset($_SESSION['productos'])) {
-                            foreach ($_SESSION['productos'] as $key => $value) {
-                                ?>  <tr><?php
-                                    foreach ($value as $value2) {
-                                        ?>
-                                        <td><?php echo $value2 ?></td>
-
-                                        <?php
-                                    }
-                                    ?></tr><?php
-                            } {
-                                
-                            }
-                            ?><tr><th>Total</th><td><?php echo $_SESSION['total'] . "€" ?></td></tr>
-                                
+                    <?php if (isset($_SESSION['productos'])) { ?>
+                        <table id="tablaCategoria">       
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                            </tr>
                             <?php
+                            if (isset($_SESSION['productos'])) {
+
+                                foreach ($_SESSION['productos'] as $key => $value) {
+                                    ?>  <tr>
+                                        <td>
+                                            <?php echo $value["nombre"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $value["pvp"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $value["cantidad"]; ?>
+                                        </td>
+                                        </tr><?php
+                                }
+                                ?><tr><th>Total</th><td>
+                                            <?php
+                                            if (isset($_SESSION['total'])) {
+                                                echo $_SESSION['total'] . "€";
+                                            } else {
+                                                echo "0€";
+                                            }
+                                            ?>
+                                    </td>
+                                    <td><a href="index.php?ctl=eliminarArticuloCarrito&id=">Editar  carrito</a></td></tr>
+                                <?php
+                            }
+                        } else {
+                            echo "El carrito está vacio";
                         }
                         ?>
-                        </tr>
                     </table>
-
                 </div>
             </div>
         </div>
         <br>
         <hr>
-
 
 
     </body>

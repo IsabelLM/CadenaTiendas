@@ -76,15 +76,60 @@ class ArticuloController {
         $id = $_GET['id'];
         $nombre = $_GET['nombre'];
         $pvp = $_GET['pvp'];
+        $cantidad = 1;
+        //Se comprueba si ya se ha cogido un producto. Si no, se crea la sesión producto y se añade
 
-        $_SESSION['productos'][] = array("nombre" => $nombre, "pvp" => $pvp);
-        $_SESSION['total'] += $pvp;
-        //echo "total:" . $_SESSION['total'];
+        if (isset($_SESSION['productos'])) {
+            $hay = false;
+            //Este for es para comprobar si ya existe el producto seleccionado
+            for ($index = 0; $index < count($_SESSION['productos']); $index++) {
+                //Si existe se modifica la cantidad
+                if (in_array($nombre, $_SESSION['productos'][$index])) {
+                    $hay = true;
+                    $cantidad = $_SESSION['productos'][$index]['cantidad'];
+                    $cantidad += 1;
+                    $_SESSION['productos'][$index]['cantidad'] = $cantidad;
+                    break;
+                }
+            }
+            //Si no existe, se añade el producto al carrito
+            if ($hay == false) {
+                $_SESSION['productos'][] = array("id" => $id, "nombre" => $nombre, "pvp" => $pvp, "cantidad" => $cantidad);
+            }
+        } else {
+            $_SESSION['productos'][] = array("id" => $id, "nombre" => $nombre, "pvp" => $pvp, "cantidad" => $cantidad);
+        }
+        if (isset($_SESSION['total'])) {
+            $_SESSION['total'] += $pvp;
+        } else {
+            $_SESSION['total'] = $pvp;
+        }
+
+//        header("Location:" . $_SERVER['HTTP_REFERER']);
+        require __DIR__ . '/../../app/plantillas/carrito.php';
+    }
+
+    public function eliminarArticuloCarrito() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $nombre = $_POST['id'];
+
+            for ($index = 0; $index <= count($_SESSION['productos']); $index++) {
+                //Con array_search buscamos si hay coincidencia del nombre del producto en el array de productos
+                if (array_search($nombre, $_SESSION['productos'][$index])) {
+                    //Sacamos lo que cuesta el producto por la cantidad que hay para restarlo al total del carrito
+                    $total = $_SESSION['productos'][$index]["pvp"] * $_SESSION['productos'][$index]["cantidad"];
+                    $_SESSION['total'] = $_SESSION['total'] - $total;
+                    //Como ha habido coincidencia eliminamos el producto del array
+                    unset($_SESSION['productos'][$index]);
+                }
+            }
+        }
+        if ($_SESSION['productos'] == null) {
+            $_SESSION['total'] = 0;
+        }
         //session_destroy();
-//        $_SESSION['idArticulo'] = $id;
-//        $_SESSION['nombreArticulo'] = $nombre;
-//        $_SESSION['PVP'] = $pvp;
-        header("Location:" . $_SERVER['HTTP_REFERER']);
+        // header("Location:" . $_SERVER['HTTP_REFERER']);
+        require __DIR__ . '/../../app/plantillas/carrito.php';
     }
 
 }

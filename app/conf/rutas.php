@@ -18,6 +18,8 @@ $mapeoRutas = array(
     array('controller' => 'articuloController', 'action' => 'verFoto'),
     'anadirCarrito' =>
     array('controller' => 'articuloController', 'action' => 'anadirAlCarrito'),
+    'eliminarArticuloCarrito' =>
+    array('controller' => 'articuloController', 'action' => 'eliminarArticuloCarrito'),
     'nuevoRegistro' =>
     array('controller' => 'usuariosController', 'action' => 'nuevoRegistro'),
     'inicioSesion' =>
@@ -26,5 +28,4 @@ $mapeoRutas = array(
     array('controller' => 'usuariosController', 'action' => 'cerrarSesion'),
     'editarPerfil' =>
     array('controller' => 'usuariosController', 'action' => 'editarPerfil'),
-    
 );

@@ -20,7 +20,7 @@
                     ?><a href="index.php?ctl=nuevaFoto&id=<?= $params['id'] ?>&nombre=<?= $params['nombre'] ?>">Subir nueva foto</a>
                     <?php
                 } else {//Si no es el admin, estará disponible la opción para comprar el articulo
-                    ?><a href="">Añadir al carrito</a><?php
+                    ?><a href="index.php?ctl=anadirCarrito&id=<?= $params['id'] ?>&nombre=<?= $params['nombre'] ?>&pvp=<?= $params['PVP'] ?>">Añadir al carrito</a><?php
                 }
             } else {
                 ?><a href="index.php?ctl=anadirCarrito&id=<?= $params['id'] ?>&nombre=<?= $params['nombre'] ?>&pvp=<?= $params['PVP'] ?>">Añadir al carrito</a><?php
