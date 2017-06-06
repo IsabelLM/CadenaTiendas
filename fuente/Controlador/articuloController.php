@@ -132,4 +132,55 @@ class ArticuloController {
         require __DIR__ . '/../../app/plantillas/carrito.php';
     }
 
+    public function eliminarTodoCarrito() {
+        $_SESSION['productos'] = null;
+        require __DIR__ . '/../../app/plantillas/carrito.php';
+    }
+
+    public function tramitarPedido() {
+        require_once __DIR__ . '/../../core/conexionBd.php';
+        $con = (new ConexionBd())->getConexion();
+        $usuario = null;
+        $total = $_SESSION['total'];
+        $tramitar = null;
+        $mensajeError = null;
+
+        //Serie de comprobaciones:        
+        //Comprobar si el usuario se ha loggeado como cliente,
+        // dar error si es un administrador o no está loggeado
+        if (isset($_SESSION['usuarioLoggeado'])) {
+            if ($_SESSION['grupo'] == 'admin') {
+                $mensajeError = "Tienes que iniciar sesión como cliente";
+            }
+        } else {
+            $mensajeError = "tienes que loggearte";
+        }
+        //Si no hay errores:
+        if ($mensajeError == null) {
+            $usuario = $_SESSION['usuario'];
+            //Si el carrito está vacío impedir la acción
+            if ($_SESSION['productos'] == null) {
+                $mensajeError = "Lo sentimos, el carrito está vacio.";
+                //Si el carro está lleno y se han aceptado los datos de usuario, 
+                //se procede a realizar el pedido 
+            } else {
+                //Primero se mostrarán los datos del usuario  para que compruebe que todo está correcto
+                //Si es así le dará a tramitar pedido, si hay algo mal podrá editarlo.
+                require_once __DIR__ . '/../Repositorio/usuarioRepositorio.php';
+                $params = (new UsuarioRepositorio)->datosUsuario($usuario, $con);
+            }
+            //Si se le ha dado a tramitar el pedido, se insertará en la bbdd
+            //Una vez hecho se borrará el carrito.
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                require_once __DIR__ . '/../Repositorio/articuloRepositorio.php';
+                $tramitar = (new ArticuloRepositorio)->tramitarPedido($usuario, intval($total), $con);
+                if ($tramitar != false) {
+                    $_SESSION['productos'] = null;
+                    $_SESSION['total'] = 0;
+                }
+            }
+        }
+        require __DIR__ . '/../../app/plantillas/tramitarPedido.php';
+    }
+
 }

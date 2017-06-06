@@ -20,6 +20,10 @@ $mapeoRutas = array(
     array('controller' => 'articuloController', 'action' => 'anadirAlCarrito'),
     'eliminarArticuloCarrito' =>
     array('controller' => 'articuloController', 'action' => 'eliminarArticuloCarrito'),
+    'eliminarTodoCarrito' =>
+    array('controller' => 'articuloController', 'action' => 'eliminarTodoCarrito'),
+    'tramitarPedido' =>
+    array('controller' => 'articuloController', 'action' => 'tramitarPedido'),
     'nuevoRegistro' =>
     array('controller' => 'usuariosController', 'action' => 'nuevoRegistro'),
     'inicioSesion' =>

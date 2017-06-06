@@ -80,7 +80,7 @@ class ArticuloRepositorio {
         while ($fila = $cursor->fetch()) {
             $categoria[$fila['id']] = $fila['nombre'];
         }
-        
+
         return $categoria;
     }
 
@@ -97,10 +97,20 @@ class ArticuloRepositorio {
         $articulo = array();
         $cursor->execute();
 
-        while ($fila = $cursor->fetch()) {            
+        while ($fila = $cursor->fetch()) {
             $articulo[$fila['id']] = array($fila['id'] => [$fila['nombre'], $fila['PVP'], $fila['id']]);
         }
         return $articulo;
+    }
+
+    public function tramitarPedido($usuario, $total, $con) {
+        $sql = "INSERT INTO pedido(idUsuario, total) values(?,?)";
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(1, $usuario);
+        $stmt->bindParam(2, $total);
+        if ($stmt->execute()) {
+            return true;
+        }
     }
 
 }

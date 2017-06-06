@@ -40,11 +40,14 @@
                                 echo "0€";
                             }
                             ?>
-                    </td></tr>
+                    </td>
+                </tr>
                 <?php
             }
             ?>
         </table>
+        <a href="index.php?ctl=eliminarTodoCarrito">Eliminar todo el carrito</a><br>
+        <a href="index.php?ctl=tramitarPedido">Tramitar pedido</a>
 </html>
 <?php $contenido = ob_get_clean() ?>
 <?php include "base.php" ?>
