@@ -27,15 +27,21 @@ class ArticuloController {
         $params = array('id' => '',
             'foto' => '');
 
-        $id = $_GET['id'];
-        $nombre = $_GET['nombre'];
-        require __DIR__ . '/../../app/plantillas/nuevaFoto.php';
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $id = $_GET['id'];
+            $nombre = $_GET['nombre'];
+        }
+
+        
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_POST['id'];
+            $nombre = $_POST['nombre'];
             $params['id'] = $id;
             $params['foto'] = fopen($_FILES['file']['tmp_name'], "r");
             require __DIR__ . '/../Repositorio/articuloRepositorio.php';
             (new ArticuloRepositorio)->actualizaFoto($params);
         }
+        require __DIR__ . '/../../app/plantillas/nuevaFoto.php';
     }
 
     public function verFoto() {

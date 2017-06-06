@@ -39,7 +39,7 @@
                 <li><a href="index.php?ctl=inicio">Inicio</a> </li>
                 <li><a href="index.php?ctl=categoria&id=">Categorias</a></li>
                 <li><a href="index.php?ctl=verTodosArticulos">Todos los productos</a>   </li>
-                <li><a href="">Nuestras tiendas</a>   </li>
+                
                 <?php
                 if (isset($_SESSION['grupo'])) {
                     //Se comprueba si el grupo pertenece a admin para poder darle acceso a otros sitios  

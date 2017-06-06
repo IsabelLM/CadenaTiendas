@@ -44,7 +44,6 @@ class ArticuloRepositorio {
     }
 
     public function actualizaFoto($params) {
-
         $sql = "UPDATE articulo
                SET foto = ?
              WHERE id = ?";

@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <th>CP:</th>
-                    <td><?= $params['cp'] ?>"</td>
+                    <td><?= $params['cp'] ?></td>
                 </tr>
                 <tr>
                     <th>Ciudad:</th>
@@ -43,8 +43,6 @@
             <?php
         }
         ?>
-
-
     </body>
 </html>
 <?php $contenido = ob_get_clean() ?>
